@@ -4,12 +4,12 @@ import AiResultPanel from '../components/AiResultPanel'
 import { getBacklog, decomposeTask } from '../services/api'
 
 const subtaskTypeConfig = {
-  Frontend: { bg: '#1e3a5f', text: '#93c5fd', border: '#3b82f6' },
-  Backend: { bg: '#431407', text: '#fdba74', border: '#f97316' },
-  DB: { bg: '#2e1065', text: '#c4b5fd', border: '#8b5cf6' },
-  Database: { bg: '#2e1065', text: '#c4b5fd', border: '#8b5cf6' },
-  Test: { bg: '#14532d', text: '#86efac', border: '#22c55e' },
-  DevOps: { bg: '#1e293b', text: '#94a3b8', border: '#475569' },
+  Frontend: { bg: '#0f2048', text: '#93c5fd', border: '#2563eb' },
+  Backend:  { bg: '#280b04', text: '#fdba74', border: '#c2410c' },
+  DB:       { bg: '#1c0840', text: '#c4b5fd', border: '#7c3aed' },
+  Database: { bg: '#1c0840', text: '#c4b5fd', border: '#7c3aed' },
+  Test:     { bg: '#0a2e1a', text: '#86efac', border: '#16a34a' },
+  DevOps:   { bg: '#0d1a30', text: '#7090b8', border: '#1c2e50' },
 }
 
 function SubtaskBadge({ type }) {
@@ -104,19 +104,16 @@ export default function Decompose() {
     <div className="flex flex-col gap-6">
       {/* Header */}
       <div>
-        <h1 className="text-2xl font-bold" style={{ color: '#f1f5f9' }}>
+        <h1 className="text-2xl font-bold" style={{ color: '#e8f0fa' }}>
           Task Kırılım &amp; Akıllı Atama
         </h1>
-        <p className="text-sm mt-1" style={{ color: '#64748b' }}>
+        <p className="text-sm mt-1" style={{ color: '#4e6e98' }}>
           Bir görev seçin, AI ile alt görevlere parçalayın ve ekibe otomatik atayın
         </p>
       </div>
 
       {fetchError && (
-        <div
-          className="rounded-xl p-4 border"
-          style={{ backgroundColor: '#450a0a', borderColor: '#ef4444' }}
-        >
+        <div className="rounded-xl p-4 border" style={{ backgroundColor: '#380808', borderColor: '#7f1d1d' }}>
           <p className="text-sm" style={{ color: '#fca5a5' }}>{fetchError}</p>
         </div>
       )}
@@ -124,56 +121,40 @@ export default function Decompose() {
       {/* Horizontal Task Scroll */}
       {loading ? (
         <div className="flex items-center justify-center py-12">
-          <div
-            className="w-10 h-10 rounded-full border-4 border-t-transparent animate-spin"
-            style={{ borderColor: '#334155', borderTopColor: '#6366f1' }}
-          />
+          <div className="w-10 h-10 rounded-full border-4 border-t-transparent animate-spin" style={{ borderColor: '#1c2e50', borderTopColor: '#6366f1' }} />
         </div>
       ) : (
-        <div
-          className="rounded-xl border p-4"
-          style={{ backgroundColor: '#1e293b', borderColor: '#334155' }}
-        >
-          <p className="text-xs font-semibold mb-3" style={{ color: '#64748b' }}>
+        <div className="rounded-xl border p-4" style={{ background: 'linear-gradient(135deg, #0d1a30, #101e35)', borderColor: '#1c2e50' }}>
+          <p className="text-xs font-semibold mb-3 uppercase tracking-wider" style={{ color: '#4e6e98' }}>
             GÖREV SEÇ ({tasks.length})
           </p>
           <div className="flex gap-3 overflow-x-auto pb-2">
             {tasks.map((task) => (
-              <TaskCard
-                key={task.id}
-                task={task}
-                compact
-                selected={selectedTask?.id === task.id}
-                onClick={handleSelectTask}
-              />
+              <TaskCard key={task.id} task={task} compact selected={selectedTask?.id === task.id} onClick={handleSelectTask} />
             ))}
             {tasks.length === 0 && (
-              <p className="text-sm" style={{ color: '#475569' }}>Görev bulunamadı.</p>
+              <p className="text-sm" style={{ color: '#3d5575' }}>Görev bulunamadı.</p>
             )}
           </div>
         </div>
       )}
 
-      {/* Main Content — 2 column */}
+      {/* Main Content */}
       {selectedTask && (
         <div className="flex gap-5">
-          {/* Left — Task Detail (1/3) */}
+          {/* Left — Task Detail */}
           <div style={{ width: '33%' }}>
             <div
               className="rounded-xl border p-5 flex flex-col gap-4 sticky top-0"
-              style={{ backgroundColor: '#1e293b', borderColor: '#334155' }}
+              style={{ background: 'linear-gradient(160deg, #0d1a30 0%, #101e35 100%)', borderColor: '#1c2e50', boxShadow: '0 8px 32px rgba(0,0,0,0.3)' }}
             >
               <div>
-                <p className="text-xs mb-1" style={{ color: '#475569' }}>#{selectedTask.id}</p>
-                <p className="text-base font-semibold" style={{ color: '#f1f5f9' }}>
-                  {selectedTask.title}
-                </p>
+                <p className="text-xs mb-1" style={{ color: '#3d5575' }}>#{selectedTask.id}</p>
+                <p className="text-base font-semibold" style={{ color: '#e8f0fa' }}>{selectedTask.title}</p>
               </div>
 
               {selectedTask.description && (
-                <p className="text-sm leading-relaxed" style={{ color: '#94a3b8' }}>
-                  {selectedTask.description}
-                </p>
+                <p className="text-sm leading-relaxed" style={{ color: '#7090b8' }}>{selectedTask.description}</p>
               )}
 
               <div className="grid grid-cols-2 gap-2 text-xs">
@@ -186,20 +167,18 @@ export default function Decompose() {
                   ['Etiketler', (selectedTask.tags || []).join(', ') || '-'],
                 ].map(([k, v]) => (
                   <div key={k}>
-                    <p style={{ color: '#475569' }}>{k}</p>
-                    <p className="font-medium" style={{ color: '#94a3b8' }}>{v}</p>
+                    <p style={{ color: '#3d5575' }}>{k}</p>
+                    <p className="font-medium" style={{ color: '#7090b8' }}>{v}</p>
                   </div>
                 ))}
               </div>
 
               {selectedTask.acceptanceCriteria && selectedTask.acceptanceCriteria.length > 0 && (
                 <div>
-                  <p className="text-xs font-semibold mb-1" style={{ color: '#64748b' }}>
-                    Kabul Kriterleri
-                  </p>
+                  <p className="text-xs font-semibold mb-1" style={{ color: '#4e6e98' }}>Kabul Kriterleri</p>
                   <ul className="flex flex-col gap-1">
                     {selectedTask.acceptanceCriteria.map((c, i) => (
-                      <li key={i} className="text-xs flex items-start gap-1.5" style={{ color: '#94a3b8' }}>
+                      <li key={i} className="text-xs flex items-start gap-1.5" style={{ color: '#7090b8' }}>
                         <span style={{ color: '#22c55e' }}>✓</span>
                         {c}
                       </li>
@@ -208,25 +187,19 @@ export default function Decompose() {
                 </div>
               )}
 
-              {/* Decompose Button */}
               <button
                 onClick={handleDecompose}
                 disabled={loadingDecompose}
                 className="w-full py-3 rounded-lg font-semibold text-sm transition-all duration-150 disabled:opacity-50 disabled:cursor-not-allowed"
                 style={{
-                  background: loadingDecompose
-                    ? '#4f46e5'
-                    : 'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)',
+                  background: loadingDecompose ? '#4f46e5' : 'linear-gradient(135deg, #6366f1 0%, #4f46e5 100%)',
                   color: '#ffffff',
-                  boxShadow: '0 4px 15px rgba(99,102,241,0.3)',
+                  boxShadow: '0 4px 18px rgba(99,102,241,0.35)',
                 }}
               >
                 {loadingDecompose ? (
                   <span className="flex items-center justify-center gap-2">
-                    <span
-                      className="w-4 h-4 rounded-full border-2 border-t-transparent animate-spin"
-                      style={{ borderColor: 'rgba(255,255,255,0.3)', borderTopColor: '#fff' }}
-                    />
+                    <span className="w-4 h-4 rounded-full border-2 border-t-transparent animate-spin" style={{ borderColor: 'rgba(255,255,255,0.3)', borderTopColor: '#fff' }} />
                     Parçalanıyor...
                   </span>
                 ) : (
@@ -236,24 +209,22 @@ export default function Decompose() {
             </div>
           </div>
 
-          {/* Right — Subtask Table (2/3) */}
+          {/* Right — Subtask Table */}
           <div style={{ width: '67%' }}>
             <div
               className="rounded-xl border p-5"
-              style={{ backgroundColor: '#1e293b', borderColor: '#334155' }}
+              style={{ background: 'linear-gradient(135deg, #0d1a30 0%, #101e35 100%)', borderColor: '#1c2e50', boxShadow: '0 8px 32px rgba(0,0,0,0.3)' }}
             >
               <div className="flex items-center justify-between mb-4">
-                <p className="text-sm font-semibold" style={{ color: '#f1f5f9' }}>
-                  Alt Görev Kırılımı
-                </p>
+                <p className="text-sm font-semibold" style={{ color: '#e8f0fa' }}>Alt Görev Kırılımı</p>
                 {decomposition && !loadingDecompose && (
                   <button
                     onClick={handleCopyReport}
                     className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium border transition-all duration-150"
                     style={{
-                      backgroundColor: copied ? '#14532d' : '#0f172a',
-                      borderColor: copied ? '#22c55e' : '#334155',
-                      color: copied ? '#86efac' : '#94a3b8',
+                      backgroundColor: copied ? '#0a2e1a' : '#060e1a',
+                      borderColor: copied ? '#16a34a' : '#1c2e50',
+                      color: copied ? '#86efac' : '#7090b8',
                     }}
                   >
                     {copied ? '✓ Kopyalandı!' : '📋 Raporu Kopyala'}
@@ -264,28 +235,16 @@ export default function Decompose() {
               {loadingDecompose || decomposeError || decomposition ? (
                 <>
                   {(loadingDecompose || decomposeError) && (
-                    <AiResultPanel
-                      type="decompose"
-                      loading={loadingDecompose}
-                      result={null}
-                      error={decomposeError}
-                    />
+                    <AiResultPanel type="decompose" loading={loadingDecompose} result={null} error={decomposeError} />
                   )}
                   {decomposition && !loadingDecompose && (
                     <div className="flex flex-col gap-4">
-                      <div
-                        className="overflow-x-auto rounded-lg border"
-                        style={{ borderColor: '#334155' }}
-                      >
+                      <div className="overflow-x-auto rounded-lg border" style={{ borderColor: '#1c2e50' }}>
                         <table className="w-full text-sm">
                           <thead>
-                            <tr style={{ backgroundColor: '#0f172a' }}>
+                            <tr style={{ background: 'linear-gradient(90deg, #060e1a, #0a1628)' }}>
                               {['Tip', 'Başlık', 'Atanan Kişi', 'Süre', 'Gerekçe'].map((h) => (
-                                <th
-                                  key={h}
-                                  className="px-3 py-2.5 text-left text-xs font-semibold"
-                                  style={{ color: '#64748b', borderBottom: '1px solid #334155' }}
-                                >
+                                <th key={h} className="px-3 py-2.5 text-left text-xs font-semibold" style={{ color: '#4e6e98', borderBottom: '1px solid #1c2e50' }}>
                                   {h}
                                 </th>
                               ))}
@@ -295,31 +254,18 @@ export default function Decompose() {
                             {(decomposition.subtasks || []).map((sub, i) => (
                               <tr
                                 key={i}
-                                style={{ borderBottom: '1px solid #1e293b' }}
-                                className="transition-colors hover:bg-slate-800"
+                                style={{ borderBottom: '1px solid #0d1a30' }}
+                                className="transition-colors"
+                                onMouseEnter={e => e.currentTarget.style.backgroundColor = '#0f1e35'}
+                                onMouseLeave={e => e.currentTarget.style.backgroundColor = 'transparent'}
                               >
-                                <td className="px-3 py-2.5">
-                                  <SubtaskBadge type={sub.type} />
-                                </td>
-                                <td
-                                  className="px-3 py-2.5 font-medium"
-                                  style={{ color: '#f1f5f9' }}
-                                >
-                                  {sub.title}
-                                </td>
-                                <td className="px-3 py-2.5" style={{ color: '#94a3b8' }}>
-                                  {sub.assignedName || sub.assignee || '-'}
-                                </td>
-                                <td
-                                  className="px-3 py-2.5 whitespace-nowrap"
-                                  style={{ color: '#94a3b8' }}
-                                >
+                                <td className="px-3 py-2.5"><SubtaskBadge type={sub.type} /></td>
+                                <td className="px-3 py-2.5 font-medium" style={{ color: '#e8f0fa' }}>{sub.title}</td>
+                                <td className="px-3 py-2.5" style={{ color: '#7090b8' }}>{sub.assignedName || sub.assignee || '-'}</td>
+                                <td className="px-3 py-2.5 whitespace-nowrap" style={{ color: '#7090b8' }}>
                                   {sub.estimatedHours || sub.hours ? `${sub.estimatedHours || sub.hours}h` : '-'}
                                 </td>
-                                <td
-                                  className="px-3 py-2.5 text-xs"
-                                  style={{ color: '#64748b', maxWidth: '200px' }}
-                                >
+                                <td className="px-3 py-2.5 text-xs" style={{ color: '#4e6e98', maxWidth: '200px' }}>
                                   {sub.reason || sub.reasoning || '-'}
                                 </td>
                               </tr>
@@ -328,9 +274,8 @@ export default function Decompose() {
                         </table>
                       </div>
 
-                      {/* Total */}
                       <div className="flex items-center justify-between">
-                        <p className="text-sm font-medium" style={{ color: '#94a3b8' }}>
+                        <p className="text-sm font-medium" style={{ color: '#7090b8' }}>
                           Toplam Süre:{' '}
                           <span className="font-bold" style={{ color: '#22c55e' }}>
                             {decomposition.totalEstimate || '-'}
@@ -340,9 +285,9 @@ export default function Decompose() {
                           onClick={handleCopyReport}
                           className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium border transition-all duration-150"
                           style={{
-                            backgroundColor: copied ? '#14532d' : '#1e293b',
-                            borderColor: copied ? '#22c55e' : '#334155',
-                            color: copied ? '#86efac' : '#94a3b8',
+                            backgroundColor: copied ? '#0a2e1a' : '#0d1a30',
+                            borderColor: copied ? '#16a34a' : '#1c2e50',
+                            color: copied ? '#86efac' : '#7090b8',
                           }}
                         >
                           {copied ? '✓ Kopyalandı!' : '📋 Raporu Kopyala'}
@@ -354,7 +299,7 @@ export default function Decompose() {
               ) : (
                 <div className="flex flex-col items-center justify-center py-16 gap-3">
                   <span className="text-4xl">⚡</span>
-                  <p className="text-sm" style={{ color: '#475569' }}>
+                  <p className="text-sm" style={{ color: '#3d5575' }}>
                     "AI ile Parçala" butonuna tıklayarak kırılımı başlatın
                   </p>
                 </div>
@@ -364,17 +309,17 @@ export default function Decompose() {
         </div>
       )}
 
-      {/* Empty State when no task selected */}
+      {/* Empty State */}
       {!selectedTask && !loading && (
         <div
           className="rounded-xl border p-12 text-center"
-          style={{ backgroundColor: '#1e293b', borderColor: '#334155' }}
+          style={{ background: 'linear-gradient(135deg, #0d1a30, #101e35)', borderColor: '#1c2e50' }}
         >
           <p className="text-4xl mb-4">⚡</p>
-          <p className="text-base font-medium mb-2" style={{ color: '#f1f5f9' }}>
+          <p className="text-base font-medium mb-2" style={{ color: '#e8f0fa' }}>
             Başlamak için bir görev seçin
           </p>
-          <p className="text-sm" style={{ color: '#64748b' }}>
+          <p className="text-sm" style={{ color: '#4e6e98' }}>
             Yukarıdaki listeden bir görev seçin, ardından AI ile alt görevlere parçalayın
           </p>
         </div>

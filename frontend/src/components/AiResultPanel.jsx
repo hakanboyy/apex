@@ -5,9 +5,9 @@ function Spinner() {
     <div className="flex flex-col items-center justify-center py-10 gap-3">
       <div
         className="w-10 h-10 rounded-full border-4 border-t-transparent animate-spin"
-        style={{ borderColor: '#334155', borderTopColor: '#6366f1' }}
+        style={{ borderColor: '#1c2e50', borderTopColor: '#6366f1' }}
       />
-      <p className="text-sm" style={{ color: '#94a3b8' }}>AI analiz yapıyor...</p>
+      <p className="text-sm" style={{ color: '#7090b8' }}>AI analiz yapıyor...</p>
     </div>
   )
 }
@@ -23,25 +23,25 @@ function SizingResult({ result }) {
       {/* Predicted Points */}
       <div className="flex items-center gap-4">
         <div className="flex flex-col items-center">
-          <span className="text-5xl font-bold" style={{ color: '#6366f1' }}>
+          <span className="text-5xl font-bold" style={{ color: '#818cf8' }}>
             {result.predictedPoints}
           </span>
-          <span className="text-xs mt-1" style={{ color: '#94a3b8' }}>Story Points</span>
+          <span className="text-xs mt-1" style={{ color: '#7090b8' }}>Story Points</span>
         </div>
         <div className="flex flex-col gap-1">
           <span
             className="inline-flex items-center px-3 py-1 rounded-full text-sm font-semibold border"
             style={{
-              backgroundColor: `${confidenceColor}20`,
+              backgroundColor: `${confidenceColor}18`,
               color: confidenceColor,
-              borderColor: confidenceColor,
+              borderColor: `${confidenceColor}60`,
             }}
           >
             Güven: {result.confidence}
           </span>
           {result.complexity && (
-            <span className="text-xs" style={{ color: '#64748b' }}>
-              Karmaşıklık: <span style={{ color: '#94a3b8' }}>{result.complexity}</span>
+            <span className="text-xs" style={{ color: '#4e6e98' }}>
+              Karmaşıklık: <span style={{ color: '#7090b8' }}>{result.complexity}</span>
             </span>
           )}
         </div>
@@ -49,9 +49,9 @@ function SizingResult({ result }) {
 
       {/* Reasoning */}
       {result.reasoning && (
-        <div className="rounded-lg p-3" style={{ backgroundColor: '#0f172a', border: '1px solid #334155' }}>
-          <p className="text-xs font-semibold mb-1" style={{ color: '#6366f1' }}>AI Gerekçesi</p>
-          <p className="text-sm leading-relaxed" style={{ color: '#cbd5e1' }}>{result.reasoning}</p>
+        <div className="rounded-lg p-3" style={{ background: 'linear-gradient(135deg, #060e1a, #0a1628)', border: '1px solid #1c2e50' }}>
+          <p className="text-xs font-semibold mb-1" style={{ color: '#818cf8' }}>AI Gerekçesi</p>
+          <p className="text-sm leading-relaxed" style={{ color: '#b8ccdd' }}>{result.reasoning}</p>
         </div>
       )}
 
@@ -61,7 +61,7 @@ function SizingResult({ result }) {
           <p className="text-xs font-semibold mb-2" style={{ color: '#f59e0b' }}>Riskler</p>
           <ul className="flex flex-col gap-1.5">
             {result.risks.map((risk, i) => (
-              <li key={i} className="flex items-start gap-2 text-sm" style={{ color: '#94a3b8' }}>
+              <li key={i} className="flex items-start gap-2 text-sm" style={{ color: '#7090b8' }}>
                 <span className="mt-0.5 flex-shrink-0" style={{ color: '#f59e0b' }}>⚠</span>
                 {risk}
               </li>
@@ -74,12 +74,12 @@ function SizingResult({ result }) {
 }
 
 const subtaskTypeConfig = {
-  Frontend: { bg: '#1e3a5f', text: '#93c5fd', border: '#3b82f6' },
-  Backend: { bg: '#431407', text: '#fdba74', border: '#f97316' },
-  DB: { bg: '#2e1065', text: '#c4b5fd', border: '#8b5cf6' },
-  Database: { bg: '#2e1065', text: '#c4b5fd', border: '#8b5cf6' },
-  Test: { bg: '#14532d', text: '#86efac', border: '#22c55e' },
-  DevOps: { bg: '#1e293b', text: '#94a3b8', border: '#475569' },
+  Frontend: { bg: '#0f2048', text: '#93c5fd', border: '#2563eb' },
+  Backend:  { bg: '#280b04', text: '#fdba74', border: '#c2410c' },
+  DB:       { bg: '#1c0840', text: '#c4b5fd', border: '#7c3aed' },
+  Database: { bg: '#1c0840', text: '#c4b5fd', border: '#7c3aed' },
+  Test:     { bg: '#0a2e1a', text: '#86efac', border: '#16a34a' },
+  DevOps:   { bg: '#0d1a30', text: '#7090b8', border: '#1c2e50' },
 }
 
 function SubtaskTypeBadge({ type }) {
@@ -97,15 +97,15 @@ function SubtaskTypeBadge({ type }) {
 function DecomposeResult({ result }) {
   return (
     <div className="flex flex-col gap-3">
-      <div className="overflow-x-auto rounded-lg border" style={{ borderColor: '#334155' }}>
+      <div className="overflow-x-auto rounded-lg border" style={{ borderColor: '#1c2e50' }}>
         <table className="w-full text-sm">
           <thead>
-            <tr style={{ backgroundColor: '#0f172a' }}>
+            <tr style={{ background: 'linear-gradient(90deg, #060e1a, #0a1628)' }}>
               {['Tip', 'Başlık', 'Atanan', 'Süre', 'Gerekçe'].map((h) => (
                 <th
                   key={h}
                   className="px-3 py-2 text-left text-xs font-semibold"
-                  style={{ color: '#64748b', borderBottom: '1px solid #334155' }}
+                  style={{ color: '#4e6e98', borderBottom: '1px solid #1c2e50' }}
                 >
                   {h}
                 </th>
@@ -116,25 +116,27 @@ function DecomposeResult({ result }) {
             {(result.subtasks || []).map((sub, i) => (
               <tr
                 key={i}
-                style={{ borderBottom: '1px solid #1e293b' }}
-                className="hover:bg-slate-800 transition-colors"
+                style={{ borderBottom: '1px solid #0d1a30' }}
+                className="transition-colors"
+                onMouseEnter={e => e.currentTarget.style.backgroundColor = '#0f1e35'}
+                onMouseLeave={e => e.currentTarget.style.backgroundColor = 'transparent'}
               >
                 <td className="px-3 py-2">
                   <SubtaskTypeBadge type={sub.type} />
                 </td>
-                <td className="px-3 py-2" style={{ color: '#f1f5f9' }}>{sub.title}</td>
-                <td className="px-3 py-2" style={{ color: '#94a3b8' }}>{sub.assignedName || sub.assignee || '-'}</td>
-                <td className="px-3 py-2 whitespace-nowrap" style={{ color: '#94a3b8' }}>
+                <td className="px-3 py-2" style={{ color: '#e8f0fa' }}>{sub.title}</td>
+                <td className="px-3 py-2" style={{ color: '#7090b8' }}>{sub.assignedName || sub.assignee || '-'}</td>
+                <td className="px-3 py-2 whitespace-nowrap" style={{ color: '#7090b8' }}>
                   {sub.estimatedHours || sub.hours ? `${sub.estimatedHours || sub.hours}h` : '-'}
                 </td>
-                <td className="px-3 py-2 text-xs" style={{ color: '#64748b' }}>{sub.reason || sub.reasoning || '-'}</td>
+                <td className="px-3 py-2 text-xs" style={{ color: '#4e6e98' }}>{sub.reason || sub.reasoning || '-'}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
       {result.totalEstimate && (
-        <p className="text-sm font-medium" style={{ color: '#94a3b8' }}>
+        <p className="text-sm font-medium" style={{ color: '#7090b8' }}>
           Toplam Tahmin:{' '}
           <span style={{ color: '#22c55e' }}>{result.totalEstimate}</span>
         </p>
@@ -155,7 +157,7 @@ function UnblockResult({ result }) {
       {result.rootCause && (
         <div
           className="rounded-lg p-3 border"
-          style={{ backgroundColor: '#450a0a', borderColor: '#ef4444' }}
+          style={{ backgroundColor: '#380808', borderColor: '#7f1d1d' }}
         >
           <p className="text-xs font-semibold mb-1" style={{ color: '#fca5a5' }}>Kök Neden</p>
           <p className="text-sm leading-relaxed" style={{ color: '#fca5a5' }}>{result.rootCause}</p>
@@ -168,9 +170,9 @@ function UnblockResult({ result }) {
           <span
             className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold border"
             style={{
-              backgroundColor: `${priorityColor}20`,
+              backgroundColor: `${priorityColor}18`,
               color: priorityColor,
-              borderColor: priorityColor,
+              borderColor: `${priorityColor}60`,
             }}
           >
             {result.priority === 'high' ? 'Yüksek Öncelik' : result.priority === 'medium' ? 'Orta Öncelik' : 'Düşük Öncelik'}
@@ -179,7 +181,7 @@ function UnblockResult({ result }) {
         {result.estimatedResolutionDays !== undefined && (
           <span
             className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold border"
-            style={{ backgroundColor: '#1e3a5f', color: '#93c5fd', borderColor: '#3b82f6' }}
+            style={{ backgroundColor: '#0f2048', color: '#93c5fd', borderColor: '#2563eb' }}
           >
             ~{result.estimatedResolutionDays} gün
           </span>
@@ -192,10 +194,10 @@ function UnblockResult({ result }) {
           <p className="text-xs font-semibold mb-2" style={{ color: '#22c55e' }}>Öneriler</p>
           <ol className="flex flex-col gap-1.5 list-none">
             {result.suggestions.map((s, i) => (
-              <li key={i} className="flex items-start gap-2 text-sm" style={{ color: '#94a3b8' }}>
+              <li key={i} className="flex items-start gap-2 text-sm" style={{ color: '#7090b8' }}>
                 <span
                   className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold mt-0.5"
-                  style={{ backgroundColor: '#14532d', color: '#22c55e' }}
+                  style={{ backgroundColor: '#0a2e1a', color: '#22c55e' }}
                 >
                   {i + 1}
                 </span>
@@ -252,8 +254,8 @@ function ReviewResult({ result }) {
       <div className="flex items-center gap-6">
         <HealthGauge score={result.healthScore || 0} />
         <div className="flex-1">
-          <p className="text-xs font-semibold mb-1" style={{ color: '#6366f1' }}>Sprint Özeti</p>
-          <p className="text-sm leading-relaxed" style={{ color: '#cbd5e1' }}>{result.summary}</p>
+          <p className="text-xs font-semibold mb-1" style={{ color: '#818cf8' }}>Sprint Özeti</p>
+          <p className="text-sm leading-relaxed" style={{ color: '#b8ccdd' }}>{result.summary}</p>
         </div>
       </div>
 
@@ -262,7 +264,7 @@ function ReviewResult({ result }) {
           <p className="text-xs font-semibold mb-2" style={{ color: '#22c55e' }}>Başarılar</p>
           <ul className="flex flex-col gap-1.5">
             {result.achievements.map((a, i) => (
-              <li key={i} className="flex items-start gap-2 text-sm" style={{ color: '#94a3b8' }}>
+              <li key={i} className="flex items-start gap-2 text-sm" style={{ color: '#7090b8' }}>
                 <span className="flex-shrink-0" style={{ color: '#22c55e' }}>✓</span>
                 {a}
               </li>
@@ -276,7 +278,7 @@ function ReviewResult({ result }) {
           <p className="text-xs font-semibold mb-2" style={{ color: '#f59e0b' }}>Öneriler</p>
           <ul className="flex flex-col gap-1.5">
             {result.recommendations.map((r, i) => (
-              <li key={i} className="flex items-start gap-2 text-sm" style={{ color: '#94a3b8' }}>
+              <li key={i} className="flex items-start gap-2 text-sm" style={{ color: '#7090b8' }}>
                 <span className="flex-shrink-0" style={{ color: '#f59e0b' }}>→</span>
                 {r}
               </li>
@@ -295,7 +297,7 @@ export default function AiResultPanel({ loading, result, error, type }) {
     return (
       <div
         className="rounded-lg p-4 border"
-        style={{ backgroundColor: '#450a0a', borderColor: '#ef4444' }}
+        style={{ backgroundColor: '#380808', borderColor: '#7f1d1d' }}
       >
         <p className="text-sm font-medium mb-1" style={{ color: '#fca5a5' }}>Hata oluştu</p>
         <p className="text-sm" style={{ color: '#fca5a5' }}>{error}</p>
@@ -308,9 +310,13 @@ export default function AiResultPanel({ loading, result, error, type }) {
   return (
     <div
       className="rounded-lg p-4 border"
-      style={{ backgroundColor: '#0f172a', borderColor: '#334155' }}
+      style={{
+        background: 'linear-gradient(135deg, #060e1a 0%, #0a1628 100%)',
+        borderColor: '#1c2e50',
+        boxShadow: '0 4px 20px rgba(0,0,0,0.3)',
+      }}
     >
-      <p className="text-xs font-semibold mb-3" style={{ color: '#6366f1' }}>
+      <p className="text-xs font-semibold mb-3" style={{ color: '#818cf8' }}>
         🤖 AI Sonucu
       </p>
       {type === 'sizing' && <SizingResult result={result} />}

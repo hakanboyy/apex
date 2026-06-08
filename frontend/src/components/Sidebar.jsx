@@ -28,15 +28,25 @@ export default function Sidebar() {
   return (
     <aside
       className="w-64 flex flex-col justify-between py-6 px-4 border-r"
-      style={{ backgroundColor: '#1e293b', borderColor: '#334155', minHeight: '100vh' }}
+      style={{
+        background: 'linear-gradient(180deg, #090f1d 0%, #07101e 100%)',
+        borderColor: '#1c2e50',
+        minHeight: '100vh',
+        boxShadow: '1px 0 0 rgba(99,102,241,0.06)',
+      }}
     >
       {/* Logo / Title */}
       <div>
         <div className="flex items-center gap-3 mb-8 px-2">
-          <span className="text-3xl">🤖</span>
+          <div
+            className="w-9 h-9 rounded-xl flex items-center justify-center text-lg"
+            style={{ background: 'linear-gradient(135deg, #4f46e5, #7c3aed)', boxShadow: '0 4px 14px rgba(99,102,241,0.4)' }}
+          >
+            🤖
+          </div>
           <div>
-            <p className="text-xs font-medium" style={{ color: '#6366f1' }}>AI Agile</p>
-            <p className="text-sm font-semibold" style={{ color: '#f1f5f9' }}>Manager</p>
+            <p className="text-xs font-semibold tracking-wider uppercase" style={{ color: '#818cf8' }}>AI Agile</p>
+            <p className="text-sm font-bold" style={{ color: '#e8f0fa' }}>Manager</p>
           </div>
         </div>
 
@@ -48,15 +58,18 @@ export default function Sidebar() {
               to={to}
               className={({ isActive }) =>
                 `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150 ${
-                  isActive
-                    ? 'text-white'
-                    : 'hover:bg-slate-700'
+                  isActive ? '' : 'hover:text-white'
                 }`
               }
               style={({ isActive }) =>
                 isActive
-                  ? { backgroundColor: '#6366f1', color: '#ffffff' }
-                  : { color: '#94a3b8' }
+                  ? {
+                      background: 'linear-gradient(90deg, rgba(99,102,241,0.25) 0%, rgba(99,102,241,0.08) 100%)',
+                      color: '#a5b4fc',
+                      borderLeft: '2px solid #6366f1',
+                      paddingLeft: '10px',
+                    }
+                  : { color: '#4e6e98' }
               }
             >
               <span className="text-base">{icon}</span>
@@ -67,9 +80,9 @@ export default function Sidebar() {
       </div>
 
       {/* Footer */}
-      <div className="px-2 pt-4 border-t flex flex-col gap-3" style={{ borderColor: '#334155' }}>
+      <div className="px-2 pt-4 border-t flex flex-col gap-3" style={{ borderColor: '#1c2e50' }}>
         <JiraStatus />
-        <p className="text-xs font-medium text-center" style={{ color: '#475569' }}>
+        <p className="text-xs font-medium text-center" style={{ color: '#243860' }}>
           IFTS Hackathon 2026
         </p>
       </div>
