@@ -108,7 +108,7 @@ cd apex
    npm run dev
 
    # Normal çalıştırma için:
-   npm start
+   node server.js
    ```
    Backend varsayılan olarak **http://localhost:3001** portu üzerinden yayına başlayacaktır.
 
