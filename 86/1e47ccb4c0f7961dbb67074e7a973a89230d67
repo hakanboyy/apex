@@ -1,0 +1,31 @@
+frontend/src/pages/Decompose.jsx
+  s_9ab33bf7140524::t_03ff53fc0d2532 7-12,107,110,116,124,127-128,133,136,142,145,149,152-153,157,170-171,178,181,195,197,202,212,216,219,225-227,238,242,245,247,257-260,262-265,268,278,288-290,302,312,316,319,322
+frontend/src/pages/Dashboard.jsx
+  s_9ab33bf7140524::t_478fe51c31d611 13-17,20,25-26,36,38,94,104,146-147,179,199,201,206-210,220,222,227-230,248,250,261-264,281,285-286,294-298
+frontend/src/components/TaskCard.jsx
+  s_9ab33bf7140524::t_7d99ab716a0e2b 4-6,10-12,38-40,43-44,56,58-60,64,71,78,80-81,85-86
+frontend/src/components/AiResultPanel.jsx
+  s_9ab33bf7140524::t_534f4985439897 8,10,26,29,35,37,43-44,52-54,64,77-82,100,103,108,119-122,127-129,132,139,160,173,175,184,197,200,257-258,267,281,300,313-317,319
+frontend/src/index.css
+  s_9ab33bf7140524::t_89a7fd7976205f 5-6,8-14,17-23
+frontend/src/pages/Backlog.jsx
+  s_9ab33bf7140524::t_bde263a4119ae8 13,17-18,21,112-113,118-120,125,132,136,139-140,144,149,154,157-158,162,175-176,185,190,196,203-204,209-211,217,221,225,227
+frontend/src/components/Sidebar.jsx
+  s_9ab33bf7140524::t_d8c6732737cd55 31-36,41-46,48-49,61,66-72,83,85
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "861e47ccb4c0f7961dbb67074e7a973a89230d67",
+  "prompts": {},
+  "sessions": {
+    "s_9ab33bf7140524": {
+      "agent_id": {
+        "tool": "github-copilot-jetbrains",
+        "id": "1780911349052",
+        "model": "unknown"
+      },
+      "human_author": "TCHBOY <hakan.boy@turkcell.com.tr>"
+    }
+  }
+}
