@@ -1,0 +1,19 @@
+README.md
+  s_9ab33bf7140524::t_1741fde072caf2 1-152
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "d1ac90a2397399f7f938d34c66ca9d6ab0c5c32b",
+  "prompts": {},
+  "sessions": {
+    "s_9ab33bf7140524": {
+      "agent_id": {
+        "tool": "github-copilot-jetbrains",
+        "id": "1780911349052",
+        "model": "unknown"
+      },
+      "human_author": "TCHBOY <hakan.boy@turkcell.com.tr>"
+    }
+  }
+}
